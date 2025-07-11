@@ -45,37 +45,43 @@ export const RecentGames = () => {
   };
 
   return (
-    <div className='border border-gray-400 rounded-md shadow-sm'>
-      <div className='text-center -mt-5 mx-auto w-[95%] border-2 bg-white dark:bg-gray-800 border-gray-400 rounded-2xl flex items-center justify-center px-3 py-1'>
-        <h6 className='text-lg font-medium  truncate'>Recent Session</h6>
+    <div className='modern-card rounded-2xl shadow-2xl overflow-hidden'>
+      <div className='text-center -mt-5 mx-auto w-[95%] border-2 bg-white dark:bg-gray-800 border-purple-300 dark:border-purple-600 rounded-2xl flex items-center justify-center px-4 py-2 shadow-lg'>
+        <h6 className='text-lg font-bold gradient-text truncate'>Recent Sessions</h6>
       </div>
-      <div className='p-4'>
-        {isEmptyRecentGames() && <p className='text-sm'>No recent sessions found</p>}
+      <div className='p-6'>
+        {isEmptyRecentGames() && (
+          <div className='text-center py-8'>
+            <div className='text-gray-400 dark:text-gray-500 text-6xl mb-4'>📋</div>
+            <p className='text-gray-500 dark:text-gray-400 font-medium'>No recent sessions found</p>
+            <p className='text-sm text-gray-400 dark:text-gray-500 mt-2'>Create a new session to get started!</p>
+          </div>
+        )}
         {recentGames && recentGames.length > 0 && (
-          <div className='overflow-x-auto' style={{ maxHeight: 250 }}>
-            <table className='min-w-full divide-y divide-gray-200'>
-              <thead className='bg-gray-50'>
+          <div className='overflow-x-auto' style={{ maxHeight: 300 }}>
+            <table className='min-w-full divide-y divide-gray-200 dark:divide-gray-700'>
+              <thead className='bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20'>
                 <tr>
-                  <th className='sticky top-0 z-10 bg-gray-50 dark:bg-gray-800 px-6 py-3 text-left text-xs font-bold tracking-wider'>
-                    Name
+                  <th className='sticky top-0 z-10 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 px-6 py-4 text-left text-xs font-bold tracking-wider text-purple-700 dark:text-purple-300'>
+                    Session Name
                   </th>
-                  <th className='sticky top-0 z-10 bg-gray-50 dark:bg-gray-800 px-6 py-3 text-left text-xs font-bold  tracking-wider'>
+                  <th className='sticky top-0 z-10 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 px-6 py-4 text-left text-xs font-bold tracking-wider text-purple-700 dark:text-purple-300'>
                     Created By
                   </th>
-                  <th className='sticky top-0 z-10 bg-gray-50 dark:bg-gray-800 px-6 py-3 text-left text-xs font-medium  tracking-wider'></th>
+                  <th className='sticky top-0 z-10 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 px-6 py-4 text-left text-xs font-medium tracking-wider'></th>
                 </tr>
               </thead>
-              <tbody className=''>
+              <tbody className='bg-white/50 dark:bg-gray-800/50'>
                 {recentGames.map(
                   (recentGame) =>
                     recentGame.name && (
                       <tr
                         key={recentGame.id}
-                        className='hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer border-t border-gray-200'
+                        className='hover:bg-purple-50 dark:hover:bg-purple-900/20 cursor-pointer border-t border-gray-200 dark:border-gray-700 transition-colors duration-200'
                         onClick={() => history.push(`/game/${recentGame.id}`)}
                       >
-                        <td className='px-6 py-4 text-sm'>{recentGame.name}</td>
-                        <td className='px-6 py-4 text-sm'>{recentGame.createdBy}</td>
+                        <td className='px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-300'>{recentGame.name}</td>
+                        <td className='px-6 py-4 text-sm text-gray-600 dark:text-gray-400'>{recentGame.createdBy}</td>
                         {isModerator(
                           recentGame.createdById,
                           getCurrentPlayerId(recentGame.id),
@@ -90,7 +96,7 @@ export const RecentGames = () => {
                               message={`Are you sure? That will delete the session: ${recentGame.name} and remove all players from the session.`}
                               onConfirm={(id: string) => handleRemoveGame(id)}
                             >
-                              <DeleteSVG className='h-5 w-5 text-red-400' />
+                              <DeleteSVG className='h-5 w-5 text-red-500 hover:text-red-700 transition-colors' />
                             </AlertDialog>
                           </td>
                         ) : (

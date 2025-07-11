@@ -136,4 +136,20 @@ const UIDesignSection = () => {
           <div className='p-4'>
             <img
               className='w-[600px] h-auto rounded-2xl shadow-2xl modern-card animate-float'
-              alt='Sessi
+              alt='Session controller'
+              src={SessionControllerImage}
+            />
+          </div>
+        </div>
+      </Column>
+    </Section>
+  );
+};
+
+const AboutSection = () => (
+  <div className='w-full max-w-7xl my-8'>
+    <AboutPlanningPokerContent />
+  </div>
+);
+
+export default HomePage;

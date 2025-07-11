@@ -126,33 +126,33 @@ export const CreateGame = () => {
                 { type: GameType.TShirtAndNumber, label: t('CreateGame.tShirtAndNumber') },
                 { type: GameType.Custom, label: t('CreateGame.custom') },
               ].map(({ type, label }) => (
-                <label key={type} className='flex items-center p-3 rounded-lg border-2 border-transparent hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer bg-gray-50 dark:bg-gray-800'>
+                <label key={type} className='flex items-center p-4 rounded-xl border-2 border-transparent hover:border-purple-300 dark:hover:border-purple-600 transition-all cursor-pointer bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-gray-800/70'>
                   <input
                     type='radio'
-                    className='form-radio text-blue-600 focus:ring-blue-500'
+                    className='enhanced-radio mr-3'
                     name='gameType'
                     value={type}
                     checked={gameType === type}
                     onChange={() => setGameType(type)}
                   />
-                  <span className='ml-3 font-medium'>{label}</span>
+                  <span className='font-semibold text-gray-700 dark:text-gray-300'>{label}</span>
                 </label>
               ))}
             </div>
           </fieldset>
           {gameType === GameType.Custom && (
             <>
-              <div className='bg-gray-50 dark:bg-gray-800 p-4 rounded-lg'>
-                <label className='block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300'>
+              <div className='bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl border border-white/20 dark:border-gray-700/50'>
+                <label className='block text-sm font-semibold mb-4 text-gray-700 dark:text-gray-300'>
                   Custom Values
                 </label>
-                <div className='grid grid-cols-5 gap-2'>
+                <div className='grid grid-cols-5 gap-3'>
                   {customOptions.map((option: any, index: number) => (
                     <input
                       key={index}
                       type='text'
                       maxLength={3}
-                      className='w-full border-2 border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700'
+                      className='w-full border-2 border-gray-200 dark:border-gray-600 rounded-xl px-3 py-3 text-center focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm transition-all hover:border-purple-300 dark:hover:border-purple-600'
                       value={option}
                       onChange={(event) => handleCustomOptionChange(index, event.target.value)}
                       data-testid={`custom-option-${index}`}
@@ -161,19 +161,24 @@ export const CreateGame = () => {
                   ))}
                 </div>
                 {error && (
-                  <p className='text-red-600 text-sm mt-2 font-medium'>{t('CreateGame.pleaseEnterValues')}</p>
+                  <p className='text-red-500 text-sm mt-3 font-semibold flex items-center'>
+                    <svg className='w-4 h-4 mr-2' fill='currentColor' viewBox='0 0 20 20'>
+                      <path fillRule='evenodd' d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z' clipRule='evenodd' />
+                    </svg>
+                    {t('CreateGame.pleaseEnterValues')}
+                  </p>
                 )}
               </div>
             </>
           )}
-          <label className='flex items-center p-3 rounded-lg border-2 border-transparent hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer bg-gray-50 dark:bg-gray-800'>
+          <label className='flex items-center p-4 rounded-xl border-2 border-transparent hover:border-purple-300 dark:hover:border-purple-600 transition-all cursor-pointer bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-gray-800/70'>
             <input
               type='checkbox'
-              className='form-checkbox text-blue-600 focus:ring-blue-500'
+              className='enhanced-checkbox mr-3'
               checked={allowMembersToManageSession}
               onChange={() => setAllowMembersToManageSession(!allowMembersToManageSession)}
             />
-            <span className='ml-3 font-medium'>{t('CreateGame.allowMembersToManageSession')}</span>
+            <span className='font-semibold text-gray-700 dark:text-gray-300'>{t('CreateGame.allowMembersToManageSession')}</span>
           </label>
         </div>
         <div className='flex justify-center mt-8'>
